@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "title": "Good Quality",
+    "description": "I highly recommend shopping from kicks",
+    "rating": 5.0,
+    "user": {
+      "name": "Alex Johnson",
+      "avatar": "https://i.pravatar.cc/150?u=alex"
+    },
+    "image": "/reviewOne.png"
+  },
+  {
+    "id": 2,
+    "title": "Good Quality",
+    "description": "I highly recommend shopping from kicks",
+    "rating": 5.0,
+    "user": {
+      "name": "Maria Garcia",
+      "avatar": "https://i.pravatar.cc/150?u=maria"
+    },
+    "image": "/reviewTwo.png"
+  },
+  {
+    "id": 3,
+    "title": "Good Quality",
+    "description": "I highly recommend shopping from kicks",
+    "rating": 5.0,
+    "user": {
+      "name": "Sam Smith",
+      "avatar": "https://i.pravatar.cc/150?u=id"
+    },
+    "image": "/reviewThree.png"
+  }
+]

@@ -27,14 +27,14 @@ const Hero = () => {
     }, [handleSwap]);
 
     return (
-        <section className="flex flex-col gap-4">
+        <section className="flex flex-col gap-4 px-4 md:px-15">
             <div className="text-center">
-                <h2 className="text-[120px] md:text-[223.5px] font-bold text-primary uppercase leading-none tracking-tighter">
+                <h2 className="text-[48px] sm:text-[80px] md:text-[223.5px] font-bold text-primary uppercase leading-none tracking-tighter">
                     DO IT <span className="text-secondary italic">Right</span>
                 </h2>
             </div>
 
-            <div className="relative w-full h-200 overflow-hidden rounded-[64px] bg-[#232321] text-white">
+            <div className="relative w-full h-[500px] lg:h-200 overflow-hidden rounded-3xl lg:rounded-[64px] bg-[#232321] text-white">
                 <div className="absolute inset-0 w-full h-full">
                     <Image
                         src={images[0]}
@@ -45,32 +45,32 @@ const Hero = () => {
                     />
                 </div>
 
-                {/* Vertical Badge */}
-                <div className="absolute top-20 left-0 h-75 w-16 flex items-center justify-center bg-[#232321]/80 backdrop-blur-sm z-10 border-r border-white/10 p-6 rounded-r-2xl">
+                {/* Vertical Badge - Hidden on mobile for better space utility */}
+                <div className="hidden md:flex absolute top-20 left-0 h-75 w-16 items-center justify-center bg-[#232321]/80 backdrop-blur-sm z-10 border-r border-white/10 p-6 rounded-r-2xl">
                     <p className="whitespace-nowrap -rotate-90 text-[16px] font-semibold tracking-widest uppercase">
                         Nike product of the year
                     </p>
                 </div>
                 {/* Content Overlay */}
-                <div className="relative h-full flex flex-col justify-end p-12 md:p-10 z-10 ">
+                <div className="relative h-full flex flex-col justify-end p-6 md:p-10 z-10 ">
                     <div className="max-w-xl">
-                        <h1 className="text-7xl md:text-7xl uppercase font-semibold  mb-4">
+                        <h1 className="text-4xl md:text-7xl uppercase font-bold mb-4">
                             NIKE AIR MAX
                         </h1>
-                        <p className="text-lg md:text-xl font-medium opacity-90 mb-8 max-w-sm">
+                        <p className="text-base md:text-xl font-medium opacity-90 mb-6 lg:mb-8 max-w-sm">
                             Nike introducing the new air max for everyone&apos;s comfort
                         </p>
-                        <button className="bg-[#4A69E2] hover:bg-[#3A59D2] text-white font-bold py-4 px-10 rounded-xl transition-all uppercase tracking-wider text-sm">
+                        <button className="bg-[#4A69E2] hover:bg-[#3A59D2] text-white font-bold py-3 lg:py-4 px-8 lg:px-10 rounded-xl transition-all uppercase tracking-wider text-xs lg:text-sm">
                             Shop Now
                         </button>
                     </div>
                 </div>
 
                 {/* Right Side Thumbnails */}
-                <div className="absolute right-8 bottom-8 flex flex-col gap-4 z-20">
+                <div className="absolute right-4 bottom-4 lg:right-8 lg:bottom-8 flex flex-col gap-3 lg:gap-4 z-20">
                     <div
                         onClick={() => handleSwap(1)}
-                        className="w-32 h-32 md:w-36 md:h-36 rounded-2xl overflow-hidden border-2 border-white shadow-2xl transition-transform hover:scale-105 cursor-pointer"
+                        className="w-16 h-16 sm:w-24 sm:h-24 lg:w-36 lg:h-36 rounded-xl lg:rounded-2xl overflow-hidden border-2 border-white shadow-2xl transition-transform hover:scale-105 cursor-pointer"
                     >
                         <Image
                             src={images[1]}
@@ -82,7 +82,7 @@ const Hero = () => {
                     </div>
                     <div
                         onClick={() => handleSwap(2)}
-                        className="w-32 h-32 md:w-36 md:h-36 rounded-2xl overflow-hidden border-2 border-white shadow-2xl transition-transform hover:scale-105 cursor-pointer"
+                        className="w-16 h-16 sm:w-24 sm:h-24 lg:w-36 lg:h-36 rounded-xl lg:rounded-2xl overflow-hidden border-2 border-white shadow-2xl transition-transform hover:scale-105 cursor-pointer"
                     >
                         <Image
                             src={images[2]}

@@ -1,0 +1,28 @@
+{
+  "about": {
+    "title": "About us",
+    "description": "We are the biggest hyperstore in the universe. We got you all cover with our exclusive collections and latest drops."
+  },
+  "categories": {
+    "title": "Categories",
+    "links": [
+      { "label": "Runners", "href": "#" },
+      { "label": "Sneakers", "href": "#" },
+      { "label": "Basketball", "href": "#" },
+      { "label": "Outdoor", "href": "#" },
+      { "label": "Golf", "href": "#" },
+      { "label": "Hiking", "href": "#" }
+    ]
+  },
+  "company": {
+    "title": "Company",
+    "links": [
+      { "label": "About", "href": "#" },
+      { "label": "Contact", "href": "#" },
+      { "label": "Blogs", "href": "#" }
+    ]
+  },
+  "follow": {
+    "title": "Follow us"
+  }
+}

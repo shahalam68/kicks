@@ -1,3 +1,5 @@
+import NavBar from '@/components/Header/NavBar';
+import Footer from '@/components/shared/Footer';
 import { ThemeProvider } from '@/components/theme-provider';
 import { ReduxProvider } from '@/redux/provider';
 import type { Metadata } from 'next';
@@ -35,9 +37,11 @@ export default function RootLayout({
             enableSystem={false}
             forcedTheme="light"
           >
-            <main className="min-h-screen py-8 px-4 md:px-[60px]">
+            <NavBar />
+            <main className="min-h-screen">
               {children}
             </main>
+            <Footer />
           </ThemeProvider>
         </ReduxProvider>
       </body>
