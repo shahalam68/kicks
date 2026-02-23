@@ -109,7 +109,7 @@ const NavBar = () => {
                     {/* Using Text logo for consistency with design if images aren't loading, but keeping Image component as primary */}
                     <span className="lg:hidden text-2xl font-black uppercase tracking-tighter text-[#232321]">Kicks</span>
                     <div className="hidden lg:block">
-                        <Image src="/KicksLogo.png" alt="Logo" width={128} height={100} />
+                        <Image src="/kicksLogo.png" alt="Logo" width={128} height={100} />
                     </div>
                 </Link>
             </div>
