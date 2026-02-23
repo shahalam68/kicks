@@ -30,7 +30,7 @@ const Hero = () => {
         <section className="flex flex-col gap-4 px-4 md:px-15">
             <div className="text-center">
                 <h2 className="text-[48px] sm:text-[80px] md:text-[223.5px] font-bold text-primary uppercase leading-none tracking-tighter">
-                    DO IT <span className="text-secondary italic">Right</span>
+                    DO IT <span className="text-secondary ">Right</span>
                 </h2>
             </div>
 

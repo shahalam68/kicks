@@ -1,26 +1,22 @@
 'use client';
 
-import Categories from '@/components/sections/Categories';
-import Recommendations from '@/components/sections/Recommendations';
-// import NewDrops from '@/components/sections/NewDrops';
-
-import { removeFromCart, updateQuantity } from '@/redux/slices/cartSlice';
-import { RootState } from '@/redux/store';
+import { Recommendations } from '@/components';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { removeFromCart, selectCartItems, updateQuantity } from '@/redux/slices/cartSlice';
 import { ChevronDown, Heart, Trash2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useDispatch, useSelector } from 'react-redux';
 
 const CartPage = () => {
-    const dispatch = useDispatch();
-    const cartItems = useSelector((state: RootState) => state.cart.items);
+    const dispatch = useAppDispatch();
+    const cartItems = useAppSelector(selectCartItems);
 
     const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
     const delivery = cartItems.length > 0 ? 6.99 : 0;
     const total = subtotal + delivery;
 
     return (
-        <div className="container mx-auto px-4 lg:px-15 py-10 min-h-screen">
+        <div className="mx-auto px-4 md:px-15 py-10 min-h-screen">
             {/* Promo Header */}
             <div className="mb-10">
                 <h1 className="text-3xl md:text-4xl font-bold text-[#232321] mb-2">Saving to celebrate</h1>
@@ -53,7 +49,7 @@ const CartPage = () => {
                                 {cartItems.map((item) => (
                                     <div key={`${item.id}-${item.size}`} className="flex flex-col sm:flex-row gap-6 pb-8 border-b border-[#E7E7E3] last:border-0 last:pb-0">
                                         {/* Item Image */}
-                                        <div className="relative w-full sm:w-48 aspect-square bg-[#F6F6F6] rounded-2xl overflow-hidden border-2 border-amber-400 p-2 shrink-0">
+                                        <div className="relative w-full sm:w-48 aspect-square bg-[#F6F6F6] rounded-2xl overflow-hidden p-2 shrink-0">
                                             <Image
                                                 src={item.image}
                                                 alt={item.title}
@@ -154,7 +150,7 @@ const CartPage = () => {
             </div>
 
             {/* Recommendations */}
-            <div className="mt-20">
+            <div className="mt-20 md:px-0">
                 <Recommendations />
             </div>
         </div>

@@ -1,5 +1,6 @@
 "use client"
-import Recommendations from '@/components/sections/Recommendations';
+import { Recommendations } from '@/components';
+import { useAppDispatch } from '@/redux/hooks';
 import { useGetProductByIdQuery } from '@/redux/services/productApi';
 import { addToCart } from '@/redux/slices/cartSlice';
 import { ChevronRight, Heart } from 'lucide-react';
@@ -7,7 +8,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { use, useState } from 'react';
-import { useDispatch } from 'react-redux';
 
 interface Params {
     id: string;
@@ -15,7 +15,7 @@ interface Params {
 
 const ProductDetails = ({ params }: { params: Promise<Params> }) => {
     const { id } = use(params);
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const router = useRouter();
     const { data: product, isLoading, isError } = useGetProductByIdQuery(id);
     const [selectedSize, setSelectedSize] = useState<number>(38);
@@ -78,7 +78,7 @@ const ProductDetails = ({ params }: { params: Promise<Params> }) => {
     const imagesToDisplay = product.images.slice(0, 4);
 
     return (
-        <div className="mx-auto px-0 lg:px-15 py-10">
+        <div className="mx-auto px-0 md:px-15 py-10">
             {/* Breadcrumb - Hidden on mobile as per design */}
             <div className="hidden lg:flex items-center gap-2 text-sm font-bold uppercase tracking-tight mb-8">
                 <Link href="/" className="text-primary/50 hover:text-primary">Home</Link>
@@ -256,7 +256,7 @@ const ProductDetails = ({ params }: { params: Promise<Params> }) => {
             </div>
 
             {/* Recommendations */}
-            <div className="mt-20">
+            <div className="mt-20 md:px-0">
                 <Recommendations
                     categoryId={product.category?.id}
                     currentProductId={product.id}

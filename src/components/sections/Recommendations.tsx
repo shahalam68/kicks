@@ -43,7 +43,7 @@ const Recommendations = ({ categoryId = 4, currentProductId }: RecommendationsPr
     if (isError || products.length === 0) return null;
 
     return (
-        <section className="">
+        <section className="px-4 md:px-0">
             <div className="flex items-center justify-between mb-8 lg:mb-12">
                 <h2 className="text-3xl md:text-5xl lg:text-[64px] font-bold text-[#232321] tracking-tight">
                     You may also like

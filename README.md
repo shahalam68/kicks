@@ -64,4 +64,4 @@ This project integrates with the **Platzi Fake Store API** for:
 - **Performance**: Optimized images using Next.js `next/image` and implemented responsive remote patterns.
 
 ---
-Built with ❤️ for Zarisoft by [Your Name/Shah Alam]
+Built with ❤️ for Zavisoft by A.K.M Shah Alam

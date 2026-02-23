@@ -1,6 +1,4 @@
-import NavBar from '@/components/Header/NavBar';
-import Footer from '@/components/shared/Footer';
-import { ThemeProvider } from '@/components/theme-provider';
+import { Footer, NavBar, ThemeProvider } from '@/components';
 import { ReduxProvider } from '@/redux/provider';
 import type { Metadata } from 'next';
 import { Rubik } from 'next/font/google';

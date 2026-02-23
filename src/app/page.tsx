@@ -1,7 +1,4 @@
-import Hero from "@/components/Header/Hero";
-import Categories from "@/components/sections/Categories";
-import NewDrops from "@/components/sections/NewDrops";
-import Reviews from "@/components/sections/Reviews";
+import { Categories, Hero, NewDrops, Reviews } from "@/components";
 
 export default function Home() {
   return (

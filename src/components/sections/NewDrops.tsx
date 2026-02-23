@@ -49,9 +49,7 @@ const NewDrops = () => {
                     ))}
                 </div>
             ) : isError ? (
-                <p className="text-center text-red-500 py-10">
-                    Failed to load products. Please try again later.
-                </p>
+                <p className="text-xl font-bold uppercase text-gray-400 mb-4">Failed to load products</p>
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 justify-items-center">
                     {products?.map((product) => (

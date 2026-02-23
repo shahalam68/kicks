@@ -1,58 +1,106 @@
 'use client';
 
-import { removeFromCart, updateQuantity } from '@/redux/slices/cartSlice';
-import { RootState } from '@/redux/store';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { removeFromCart, selectCartCount, selectCartItems, updateQuantity } from '@/redux/slices/cartSlice';
 import { ChevronDown, Menu, Minus, Plus, Search, User, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 const NavBar = () => {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const [isCartOpen, setIsCartOpen] = useState(false);
-    const cartItems = useSelector((state: RootState) => state.cart.items);
-    const cartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
-    const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const cartItems = useAppSelector(selectCartItems);
+    const cartCount = useAppSelector(selectCartCount);
+    const subtotal = useAppSelector((state) =>
+        state.cart.items.reduce((acc, item) => acc + item.price * item.quantity, 0)
+    );
     const dropdownRef = useRef<HTMLDivElement>(null);
+    const menuRef = useRef<HTMLDivElement>(null);
 
-    // Close dropdown when clicking outside
+    // Close dropdowns when clicking outside
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
                 setIsCartOpen(false);
+            }
+            if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+                setIsMenuOpen(false);
             }
         };
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
+    const navLinks = [
+        { name: 'New Drops', href: '#', emoji: '🔥' },
+        { name: 'Men', href: '#', hasDropdown: true },
+        { name: 'Women', href: '#', hasDropdown: true },
+        { name: 'Kids', href: '#', hasDropdown: true },
+        { name: 'Sale', href: '#', isSale: true },
+    ];
+
     return (
         <nav className="relative flex items-center justify-between bg-white rounded-3xl lg:rounded-2xl px-6 lg:px-8 shadow-sm py-4 lg:py-8 mx-4 md:mx-15 mt-4 lg:mt-8 z-[100]">
             {/* Desktop Left: Navigation Links */}
             <div className="hidden lg:flex flex-1 items-center gap-8 font-semibold text-primary">
-                <Link href="#" className="flex items-center gap-1 hover:opacity-80">
-                    New Drops <span role="img" aria-label="fire">🔥</span>
-                </Link>
-                <Link href="#" className="flex items-center gap-1 hover:opacity-80 whitespace-nowrap">
-                    Men <ChevronDown size={16} />
-                </Link>
-                <Link href="#" className="flex items-center gap-1 hover:opacity-80 whitespace-nowrap">
-                    Women <ChevronDown size={16} />
-                </Link>
-                <Link href="#" className="flex items-center gap-1 hover:opacity-80 whitespace-nowrap">
-                    Kids <ChevronDown size={16} />
-                </Link>
-                <Link href="#" className="flex items-center gap-1 hover:opacity-80 whitespace-nowrap text-secondary">
-                    Sale
-                </Link>
+                {navLinks.map((link) => (
+                    <Link
+                        key={link.name}
+                        href={link.href}
+                        className={`flex items-center gap-1 hover:opacity-80 whitespace-nowrap ${link.isSale ? 'text-secondary' : ''}`}
+                    >
+                        {link.name} {link.emoji && <span>{link.emoji}</span>} {link.hasDropdown && <ChevronDown size={16} />}
+                    </Link>
+                ))}
             </div>
 
             {/* Mobile Left: Hamburger Menu */}
             <div className="lg:hidden flex flex-1 items-center">
-                <button className="text-primary hover:opacity-70 transition-opacity">
+                <button
+                    onClick={() => setIsMenuOpen(true)}
+                    className="text-primary hover:opacity-70 transition-opacity"
+                >
                     <Menu size={24} />
                 </button>
+
+                {/* Mobile Menu Overlay */}
+                {isMenuOpen && (
+                    <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[200] animate-in fade-in duration-300">
+                        <div
+                            ref={menuRef}
+                            className="bg-white w-[80%] h-full p-8 flex flex-col gap-6 animate-in slide-in-from-left duration-300 shadow-2xl"
+                        >
+                            <div className="flex justify-between items-center mb-4">
+                                <span className="text-2xl font-black uppercase tracking-tighter text-[#232321]">Kicks</span>
+                                <button onClick={() => setIsMenuOpen(false)} className="text-gray-400 hover:text-black">
+                                    <X size={28} />
+                                </button>
+                            </div>
+                            <div className="flex flex-col gap-4 mt-4">
+                                {navLinks.map((link) => (
+                                    <Link
+                                        key={link.name}
+                                        href={link.href}
+                                        onClick={() => setIsMenuOpen(false)}
+                                        className={`text-2xl font-bold uppercase ${link.isSale ? 'text-secondary' : 'text-primary'}`}
+                                    >
+                                        {link.name} {link.emoji && <span>{link.emoji}</span>}
+                                    </Link>
+                                ))}
+                            </div>
+                            <div className="mt-auto border-t pt-8 space-y-6">
+                                <Link href="#" className="flex items-center gap-4 text-primary font-bold">
+                                    <Search size={24} /> Search
+                                </Link>
+                                <Link href="#" className="flex items-center gap-4 text-primary font-bold">
+                                    <User size={24} /> Profile
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
 
             {/* Center: Logo */}
